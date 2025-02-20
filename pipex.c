@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:47:13 by brivera           #+#    #+#             */
-/*   Updated: 2025/01/13 17:26:57 by brivera          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:45:41 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,8 @@ static void	execute_command(char *argv, char **env)
 
 static void	setup_pipe_io(int i, int argc, t_fds *fds)
 {
-	int	dev_null;
-
-	dev_null = 0;
-	if (i == 0)
-	{
-		if (fds->infile == -1)
-		{
-			dev_null = open("/dev/null", O_RDONLY);
-			if (dev_null == -1)
-				error_and_exit("Error /dev/null");
-			dup2(dev_null, STDIN_FILENO);
-			close(dev_null);
-		}
-		else
-			dup2(fds->infile, STDIN_FILENO);
-	}
+	if (i == 0 && fds->infile != -1)
+		dup2(fds->infile, STDIN_FILENO);
 	else if (fds->infile == -1)
 		dup2(fds->pipes[0], STDIN_FILENO);
 	else
@@ -83,6 +69,8 @@ void	pipex(int argc, char **argv, char **env, t_fds *fds)
 
 	i = 0;
 	fds->prev_pipes = -1;
+	if (fds->infile == -1)
+		i = 1;
 	while (i < argc - 3)
 	{
 		create_pipes(fds);
