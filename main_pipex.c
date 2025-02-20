@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:41:12 by brivera           #+#    #+#             */
-/*   Updated: 2025/01/14 14:31:00 by brivera          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:11:15 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		fds.outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fds.outfile == -1)
-			error_and_exit("Error archivo_salida");
+			perror("Error archivo_salida");
 		fds.infile = open(argv[1], O_RDONLY);
 		if (fds.infile == -1)
 			perror("Error archivo_entrada");
