@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:07:04 by brivera@stu       #+#    #+#             */
-/*   Updated: 2025/01/14 14:31:03 by brivera          ###   ########.fr       */
+/*   Updated: 2025/03/08 18:43:24 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	open_fds(t_fds *fds, int argc, char **argv)
 {
 	fds->outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fds->outfile == -1)
-		error_and_exit("Error archivo_salida");
+		perror("Error archivo_salida");
 	fds->infile = open(argv[1], O_RDONLY);
 	if (fds->infile == -1)
 		perror("Error archivo_entrada");

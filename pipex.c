@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:47:13 by brivera           #+#    #+#             */
-/*   Updated: 2025/02/20 18:24:35 by brivera          ###   ########.fr       */
+/*   Updated: 2025/03/08 18:41:37 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ static void	execute_command(char *argv, char **env)
 	if (path == NULL)
 	{
 		ft_putstr_fd(argv, 2);
-		print_error_exit(": no existe el comando\n");
+		free_matrix(command);
+		print_error_exit(": command not found\n");
+		
+		
 	}
 	if (execve(path, command, env) == -1)
+	{
+		free_matrix(command);
 		error_and_exit("Error execve");
+	}
 	free(path);
 	free_matrix(command);
 }
