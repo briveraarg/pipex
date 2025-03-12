@@ -17,7 +17,13 @@ Un **pipe** es un mecanismo de comunicación entre procesos en sistemas Unix/Lin
 - **Here Document**: Implementa redirección `<<` y `>>` cuando el primer parámetro es `here_doc`.
 - **Manejo de errores avanzado**: Mejora la gestión de errores y casos extremos.
 
-## Uso
+## Instalación
+
+Clona el repositorio:
+
+```sh
+git clone https://github.com/tusuario/pipex.git
+```
 Compilar el programa con:
 ```sh
 make
