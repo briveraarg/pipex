@@ -67,15 +67,19 @@ Ejemplo:
 - `unset PATH` o `export PATH=""`: Probar el comportamiento de `pipex` sin `PATH`.
 - `valgrind --trace-children=yes --track-fds=yes`: Usar estas opciones para verificar la gestión de procesos hijo y descriptores de archivos.
 
-## Recursos Recomendados
-Para una mejor comprensión sobre la gestión de errores y la salida esperada, recomendamos visitar [este repositorio](https://github.com/oliverkingz/pipex), que explica con más detalle estos aspectos.
+## Más documentación del proyecto
 
-## Requisitos
-- Sistema Unix/Linux
-- Compilador `gcc`
-- `Makefile` para compilar
+Si necesitas más información, te recomiendo leer la documentación de Oliver, ya que explica en detalle cada parte del proyecto. No dudes en darle una estrella:
+
+[Repositorio de Oliver](https://github.com/oliverkingz/pipex)
 
 ## Autora
-Brenda Rivera
+
+Proyecto desarrollado por **Brenda Rivera** como parte del programa de 42 Madrid.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
 
 
