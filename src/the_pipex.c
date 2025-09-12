@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:34:44 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/12 13:40:39 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 13:43:10 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static bool	create_pipes(t_pipex *data)
 	return (false);
 }
 
-static void	ex
+static void	execute_command(t_pipex *data)
+{
+	
+}
 
 static void	run_pipeline(int i, t_pipex *data)
 {
