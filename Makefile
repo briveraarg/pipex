@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/12 13:36:10 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/12 17:39:13 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRCS_DIR 		:= src/
 SRCS		 		:= 	$(SRCS_DIR)main.c \
 						$(SRCS_DIR)control_parce.c \
 						$(SRCS_DIR)setup_pipes.c \
-						$(SRCS_DIR)the_pipex.c
+						$(SRCS_DIR)the_pipex.c\
+						$(SRCS_DIR)find_command_in_path.c\
+						$(SRCS_DIR)free_memory.c
 
 #SRC_DIR_BONUS 	:= src_bonus/
 

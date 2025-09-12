@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:57:11 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/12 13:35:46 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:33:06 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ typedef struct s_pipex
 /* ·········································································· */
 /* ·········································································· */
 int		pipex(t_pipex *data);
+char	*find_command_in_path(const char *command, char **env);
+char	*ft_strjoin_free(char *s1, char *s2);
 bool	control_len_argument(char **argv, size_t argc);
 void	print_error_argument(void);
 void	setup_pipe(int i, t_pipex *data);
-
-
+void	ft_free_ptr(void **ptr);
 #endif

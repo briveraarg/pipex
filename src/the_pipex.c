@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:34:44 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/12 13:43:10 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:38:33 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ static bool	create_pipes(t_pipex *data)
 	return (false);
 }
 
-static void	execute_command(t_pipex *data)
+static void	execute_command(t_pipex *data, int i)
 {
-	
+	char	*path;
+	//char	**command;
+
+	path = find_command_in_path(data->argv[i + 2], data->env);
 }
 
 static void	run_pipeline(int i, t_pipex *data)
 {
 	setup_pipe(i, data);
-	execute_command(data);
+	execute_command(data, i);
 	exit(EXIT_SUCCESS);
 }
 
