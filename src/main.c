@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:41:12 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/11 17:21:40 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 12:06:05 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,11 @@ bool	open_file_outfile(char **argv, int argc, int *outfile)
 	return (false);
 }
 
-static bool	create_pipes(t_pipex *data, int i)
+static bool	create_pipes(t_pipex *data)
 {
 	pipe(data->pipes);
 	if (data->pipes[0] == -1 || data->pipes[1] == -1)
 		return (perror("pipe"), true);
-	if (i == 0)
-		return (false);
-	if (dup2(data->prev_pipes, data->pipes[0]) == -1)
-		return (perror("dup2"), true);
-	close(data->prev_pipes);
 	return (false);
 }
 
@@ -55,32 +50,37 @@ void	setup_pipe_stdin_infile(t_pipex *data)
 	close(data->pipes[0]);
 }
 
+void	setup_pipe_stout_outfile(t_pipex *data)
+{
+	if (open_file_outfile(data->argv, data->argc, &data->outfile))
+	{
+		close(data->pipes[0]);
+		close(data->pipes[1]);
+		exit(EXIT_FAILURE);
+	}
+	if (dup2(data->outfile, STDOUT_FILENO) == -1)
+		exit(EXIT_FAILURE);
+	close(data->outfile);
+	close(data->pipes[1]);
+}
+
+
 void	setup_pipe(int i, t_pipex *data)
 {
 	if (i == 0)
 		setup_pipe_stdin_infile(data);
 	else
 	{
-		if (dup2(data->pipes[0], STDIN_FILENO) == -1)
+		if (dup2(data->prev_pipes, STDIN_FILENO) == -1)
 			exit(EXIT_FAILURE);
 		close(data->pipes[0]);
+		close(data->prev_pipes);
 	}
 	if (i == data->argc - 4)
-	{
-		if (open_file_outfile(data->argv, data->argc, &data->outfile))
-		{
-			close(data->pipes[0]);
-			close(data->pipes[1]);
-			exit(EXIT_FAILURE);
-		}
-		if (dup2(data->outfile, STDOUT_FILENO))
-			exit(EXIT_FAILURE);
-		close(data->outfile);
-		close(data->pipes[1]);
-	}
+		setup_pipe_stout_outfile(data);
 	else
 	{
-		if (dup2(data->pipes[1], STDOUT_FILENO))
+		if (dup2(data->pipes[1], STDOUT_FILENO) == -1)
 			exit(EXIT_FAILURE);
 		close(data->pipes[1]);
 	}
@@ -95,7 +95,7 @@ int	pipex(t_pipex *data)
 	i = 0;
 	while (i < data->argc - 3)
 	{
-		if (create_pipes(data, i))
+		if (create_pipes(data))
 			return (EXIT_FAILURE);
 		pid = fork();
 		if (pid == -1)
