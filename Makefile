@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/12 17:39:13 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/12 19:35:26 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,9 +79,20 @@ fclean: clean
 
 re: fclean all
 
+valgrind:
+	valgrind -s \
+		--tool=memcheck \
+		--leak-check=full \
+		--show-leak-kinds=all \
+		--show-reachable=yes \
+		--track-origins=yes \
+		--trace-children=yes \
+		--track-fds=yes \
+		./$(NAME) Makefile "echo hola" "echo argentina" outfile
+
 norminette:
 	@norminette $(SRCS) $(INCLUDE)
 
-.PHONY: all clean fclean re bonus norminette
+.PHONY: all clean fclean re bonus norminette valgrind
 
 .DEFAULT_GOAL := all

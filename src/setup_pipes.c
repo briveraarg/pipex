@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 12:28:08 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/12 12:31:41 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:31:15 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	setup_pipe_stout_outfile(t_pipex *data)
 {
 	if (open_file_outfile(data->argv, data->argc, &data->outfile))
 	{
-		close(data->pipes[0]);
 		close(data->pipes[1]);
 		exit(EXIT_FAILURE);
 	}

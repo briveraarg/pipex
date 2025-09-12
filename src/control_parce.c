@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 15:33:59 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/11 15:34:24 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:00:01 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_error_argument(void)
 {
-	ft_putendl_fd("Ingrese:", 2);
-	ft_putendl_fd("./pipex infile comando 1 comando 2 outfile", 2);
+	ft_putendl_fd("Ingrese:", STDERR_FILENO);
+	ft_putendl_fd("./pipex infile comando 1 comando 2 outfile", STDERR_FILENO);
 }
 
 bool	control_len_argument(char **argv, size_t argc)

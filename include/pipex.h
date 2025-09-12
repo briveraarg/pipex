@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:57:11 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/12 17:33:06 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 18:51:51 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ bool	control_len_argument(char **argv, size_t argc);
 void	print_error_argument(void);
 void	setup_pipe(int i, t_pipex *data);
 void	ft_free_ptr(void **ptr);
+void	*free_array(char **array);
+
 #endif
