@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:57:11 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/11 15:41:39 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/12 13:35:46 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ typedef struct s_pipex
 	int		outfile;
 	int		pipes[2];
 	int		prev_pipes;
+	pid_t	*pid;
 	int		argc;
 	char	**argv;
 	char	**env;
 }	t_pipex;
 /* ·········································································· */
 /* ·········································································· */
-void	print_error_argument(void);
+int		pipex(t_pipex *data);
 bool	control_len_argument(char **argv, size_t argc);
+void	print_error_argument(void);
+void	setup_pipe(int i, t_pipex *data);
+
 
 #endif

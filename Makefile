@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/11 15:35:51 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/12 13:36:10 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ HEADERS			:= $(INCLUDE)pipex.h
 
 SRCS_DIR 		:= src/
 SRCS		 		:= 	$(SRCS_DIR)main.c \
-						$(SRCS_DIR)control_parce.c 
+						$(SRCS_DIR)control_parce.c \
+						$(SRCS_DIR)setup_pipes.c \
+						$(SRCS_DIR)the_pipex.c
 
 #SRC_DIR_BONUS 	:= src_bonus/
 
