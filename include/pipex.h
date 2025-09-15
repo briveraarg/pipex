@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:57:11 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 15:29:39 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:37:27 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_pipex
 	int		outfile;
 	int		pipes[2];
 	int		prev_pipes;
+	int		non_command_args;
 	pid_t	*pid;
 	int		argc;
 	char	**argv;

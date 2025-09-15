@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:34:44 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 15:31:45 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:38:03 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	pipex(t_pipex *data)
 	data->pid = ft_calloc(data->argc - 3, sizeof(pid_t));
 	if (!data->pid)
 		return (perror("malloc"), ENOMEM);
-	while (i < data->argc - 3)
+	while (i < data->argc - data->non_command_args)
 	{
 		if (create_pipes(data))
 			return (ft_free_ptr((void *)&data->pid), EXIT_FAILURE);
@@ -73,7 +73,7 @@ int	pipex(t_pipex *data)
 			bye_bye_pipe_father(data);
 		i++;
 	}
-	wait_childs(data->argc - 3, &status, data->pid);
+	wait_childs(data->argc - data->non_command_args, &status, data->pid);
 	ft_free_ptr((void *)&data->pid);
 	if (data->prev_pipes != -1)
 		close(data->prev_pipes);
