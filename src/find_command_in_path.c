@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 16:39:15 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 15:09:36 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 20:48:55 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*find_command_in_path(const char *command, char **env)
 	if (ft_strchr(command, '/'))
 		return (dir_full_path = path_slash_access(command));
 	dir_command = path_check(env);
+	if (!dir_command)
+		return (NULL);
 	i = 0;
 	while (dir_command[i] != NULL)
 	{
