@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/12 19:35:26 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/15 12:19:15 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ valgrind:
 		--track-origins=yes \
 		--trace-children=yes \
 		--track-fds=yes \
-		./$(NAME) Makefile "echo hola" "echo argentina" outfile
+		time ./$(NAME) Makefile "sleep 5" "sleep 2" outfile
 
 norminette:
 	@norminette $(SRCS) $(INCLUDE)
