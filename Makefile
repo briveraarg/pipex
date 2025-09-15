@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/15 20:51:32 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/15 21:37:29 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ HEADERS_BONUS	:= $(INCLUDE_BONUS)pipex_bonus.h
 
 SRCS_DIR 			:= src/
 SRCS		 		:= 	$(SRCS_DIR)main.c \
-						$(SRCS_DIR)control_parce.c \
+						$(SRCS_DIR)control_parse.c \
 						$(SRCS_DIR)setup_pipes.c \
 						$(SRCS_DIR)the_pipex.c\
 						$(SRCS_DIR)find_command_in_path.c\
@@ -35,7 +35,7 @@ SRCS		 		:= 	$(SRCS_DIR)main.c \
 
 SRC_DIR_BONUS 		:= 	src_bonus/
 SRCS_BONUS			:= 	$(SRC_DIR_BONUS)main_bonus.c\
-						$(SRC_DIR_BONUS)control_parce_bonus.c \
+						$(SRC_DIR_BONUS)control_parse_bonus.c \
 						$(SRC_DIR_BONUS)mode_heredoc.c \
 						$(SRC_DIR_BONUS)gnl.c \
 						$(SRC_DIR_BONUS)free_memory_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:45:53 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 20:17:47 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 21:37:35 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main(int argc, char **argv, char **env)
 
 	ft_memset(&data, 0, sizeof(t_pipex));
 	if (argc < 5)
-		return (print_error_argument(), EXIT_FAILURE);
-	if (control_len_argument(argv, argc))
-		return (ft_putstr_fd("OMG! ", 2), print_error_argument(), EXIT_FAILURE);
+		return (print_argument_error(), EXIT_FAILURE);
+	if (check_empty_arguments(argv, argc))
+		return (ft_putstr_fd("OMG! ", 2), print_argument_error(), EXIT_FAILURE);
 	if (!ft_strncmp(argv[1], "here_doc", 8))
 	{
 		if (mode_heredoc(argv))

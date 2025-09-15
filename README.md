@@ -26,36 +26,36 @@ La parte bonus amplía la funcionalidad para manejar múltiples tuberías y la c
 
 ## ❤️ Función Corazón del Proyecto 
 
-La función `pipex` es el núcleo del programa. Se encarga de crear los procesos hijos, gestionar las tuberías y esperar a que los comandos finalicen.
+La función `pipex` es el núcleo del programa. Se encarga de crear los procesos hijo, gestionar las tuberías y esperar a que los comandos finalicen.
 
 ```c
-int	pipex(t_pipex *data)
+int pipex(t_pipex *data)
 {
-	int		i;
-	int		status;
+  int i;
+  int status;
 
-	i = 0;
-	data->pid = ft_calloc(data->argc - 3, sizeof(pid_t));
-	if (!data->pid)
-		return (perror("malloc"), ENOMEM);
-	while (i < data->argc - data->non_command_args)
-	{
-		if (create_pipes(data))
-			return (ft_free_ptr((void *)&data->pid), EXIT_FAILURE);
-		data->pid[i] = fork();
-		if (data->pid[i] == -1)
-			return (perror("fork"), ft_free_ptr((void *)&data->pid), 1);
-		if (data->pid[i] == 0)
-			run_pipeline(i, data);
-		else
-			bye_bye_pipe_father(data);
-		i++;
-	}
-	wait_childs(data->argc - data->non_command_args, &status, data->pid);
-	ft_free_ptr((void *)&data->pid);
-	if (data->prev_pipes != -1)
-		close(data->prev_pipes);
-	return (status);
+  i = 0;
+  data->pid = ft_calloc(data->argc - 3, sizeof(pid_t));
+  if (!data->pid)
+    return (perror("malloc"), ENOMEM);
+  while (i < data->argc - data->non_command_args)
+  {
+    if (create_pipes(data))
+      return (ft_free_ptr((void *)&data->pid), EXIT_FAILURE);
+    data->pid[i] = fork();
+    if (data->pid[i] == -1)
+      return (perror("fork"), ft_free_ptr((void *)&data->pid), 1);
+    if (data->pid[i] == 0)
+      run_pipeline(i, data);
+    else
+      bye_bye_pipe_father(data);
+    i++;
+  }
+  wait_children(data->argc - data->non_command_args, &status, data->pid);
+  ft_free_ptr((void *)&data->pid);
+  if (data->prev_pipes != -1)
+    close(data->prev_pipes);
+  return (status);
 }
 ```
 

@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:34:44 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 15:38:03 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 21:33:05 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	run_pipeline(int i, t_pipex *data)
 	exit(EXIT_SUCCESS);
 }
 
-static void	wait_childs(int cmd_len, int *exit_code, int pid[])
+static void	wait_children(int cmd_len, int *exit_code, int pid[])
 {
 	int	i;
 	int	status;
@@ -73,7 +73,7 @@ int	pipex(t_pipex *data)
 			bye_bye_pipe_father(data);
 		i++;
 	}
-	wait_childs(data->argc - data->non_command_args, &status, data->pid);
+	wait_children(data->argc - data->non_command_args, &status, data->pid);
 	ft_free_ptr((void *)&data->pid);
 	if (data->prev_pipes != -1)
 		close(data->prev_pipes);
