@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/15 17:50:35 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/15 20:13:23 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,18 @@ SRCS		 		:= 	$(SRCS_DIR)main.c \
 						$(SRCS_DIR)the_pipex.c\
 						$(SRCS_DIR)find_command_in_path.c\
 						$(SRCS_DIR)execute_command.c\
-						$(SRCS_DIR)free_memory.c
+						$(SRCS_DIR)free_memory.c 
 
 SRC_DIR_BONUS 		:= 	src_bonus/
 SRCS_BONUS			:= 	$(SRC_DIR_BONUS)main_bonus.c\
 						$(SRC_DIR_BONUS)control_parce_bonus.c \
-						$(SRC_DIR_BONUS)mode_heredoc.c
+						$(SRC_DIR_BONUS)mode_heredoc.c \
+						$(SRC_DIR_BONUS)gnl.c \
+						$(SRC_DIR_BONUS)free_memory_bonus.c \
+						$(SRC_DIR_BONUS)the_pipex_bonus.c \
+						$(SRC_DIR_BONUS)execute_command_bonus.c \
+						$(SRC_DIR_BONUS)find_command_in_path_bonus.c \
+						$(SRC_DIR_BONUS)setup_pipes_bonus.c \
 
 OBJ_DIR      	:= obj/
 OBJ_DIR_BONUS 	:= obj_bonus/
@@ -71,7 +77,7 @@ $(OBJ_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS)
 
 $(OBJ_DIR_BONUS)%.o: $(SRC_DIR_BONUS)%.c $(HEADERS_BONUS)
 	@mkdir -p $(OBJ_DIR_BONUS)
-	$(CC) $(CFLAGS) -I$(INCLUDE_BONUS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDE_BONUS) -c $< -o $@
 
 
 clean:

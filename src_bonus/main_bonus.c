@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:45:53 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 17:58:35 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 20:17:47 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ int	main(int argc, char **argv, char **env)
 	{
 		if (mode_heredoc(argv))
 			return (EXIT_FAILURE);
+		data.is_heredoc = true;
 	}
-	data.non_command_args = 3;
+	if (data.is_heredoc)
+		data.non_command_args = 4;
+	else
+		data.non_command_args = 3;
 	data.prev_pipes = -1;
 	data.argv = argv;
 	data.argc = argc;
 	data.env = env;
-	status = 0;
+	status = pipex(&data);
 	return (status);
 }

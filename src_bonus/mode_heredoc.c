@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 17:42:37 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 17:57:22 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 20:06:28 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ static void	read_stdin_heredoc(char *delimiter, int infile)
 			&& line[delimiter_len] == '\n')
 			break ;
 		ft_putstr_fd(line, infile);
-		free(line);
+		ft_free_ptr((void **)&line);
 	}
-	free(line);
+	ft_free_ptr((void **)&line);
 }
 
-bool mode_heredoc(char **delimiter)
+bool	mode_heredoc(char **delimiter)
 {
 	int	infile;
 
-	infile = open("/tmp/heredoc_temp", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	infile = open(ONE_WAY, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (infile == -1)
 		return (perror("error al crear temporal"), true);
 	read_stdin_heredoc(delimiter[2], infile);
 	close(infile);
+	return (false);
 }

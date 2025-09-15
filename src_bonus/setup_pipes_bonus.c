@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_pipes.c                                      :+:      :+:    :+:   */
+/*   setup_pipes_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 12:28:08 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 20:22:24 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 20:24:32 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-static bool	open_file_infile(char **argv, int *infile)
+static bool	open_file_infile(char **argv, int *infile, bool is_heredoc)
 {
-	*infile = open(argv[1], O_RDONLY);
+	if (is_heredoc)
+		*infile = open(ONE_WAY, O_RDONLY);
+	else
+		*infile = open(argv[1], O_RDONLY);
 	if (*infile == -1)
 		return (perror(argv[1]), true);
 	return (false);
@@ -30,7 +33,7 @@ static bool	open_file_outfile(char **argv, int argc, int *outfile)
 
 static void	setup_pipe_stdin_infile(t_pipex *data)
 {
-	if (open_file_infile(data->argv, &data->infile))
+	if (open_file_infile(data->argv, &data->infile, data->is_heredoc))
 	{
 		close(data->pipes[0]);
 		close(data->pipes[1]);
