@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 17:33:17 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 17:35:19 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 20:51:57 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_error_argument(void)
 {
 	ft_putendl_fd("Ingrese:", STDERR_FILENO);
 	ft_putendl_fd("./pipex infile cmd1 ... cmd4 outfile", STDERR_FILENO);
-	ft_putendl_fd("./pipex infile here_doc DELIMITADOR cmd1 ... cmd4 outfile", 
+	ft_putendl_fd("./pipex infile here_doc DELIMITADOR cmd1 ... cmd4 outfile",
 		STDERR_FILENO);
 }
 

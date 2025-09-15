@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/15 20:13:23 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/15 20:51:32 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,7 @@ valgrind:
 		time ./$(NAME) Makefile "echo argentina" "cat" outfile
 
 norminette:
-	@norminette $(SRCS) $(INCLUDE)
+	@norminette $(SRCS) $(INCLUDE) $(SRCS_BONUS) $(INCLUDE_BONUS)
 
 .PHONY: all clean fclean re bonus norminette valgrind
 
