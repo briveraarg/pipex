@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:34:44 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 12:44:09 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:31:45 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,12 @@ static bool	create_pipes(t_pipex *data)
 	return (false);
 }
 
-static void	execute_command(t_pipex *data, int i)
+static void	bye_bye_pipe_father(t_pipex *data)
 {
-	char	*path;
-	char	**command;
-
-	command = ft_split(data->argv[i + 2], ' ');
-	if(!command)
-	{
-		perror("malloc");
-		exit(ENOMEM);
-	}
-	path = find_command_in_path(command[0], data->env);
-	if (!path)
-	{
-		ft_putstr_fd(command[0], STDERR_FILENO);
-		ft_putendl_fd(" command not found", STDERR_FILENO);
-		free_array(command);
-		exit(127);
-	}
-	if (execve(path, command, data->env) == -1)
-	{
-		ft_free_ptr((void *)&path);
-		free_array(command);
-		exit(127);
-	}
-	ft_free_ptr((void *)&path);
-	free_array(command);
+	if (data->prev_pipes != -1)
+		close(data->prev_pipes);
+	data->prev_pipes = data->pipes[0];
+	close(data->pipes[1]);
 }
 
 static void	run_pipeline(int i, t_pipex *data)
@@ -62,6 +41,7 @@ static void	wait_childs(int cmd_len, int *exit_code, int pid[])
 	int	status;
 
 	i = 0;
+	*exit_code = 0;
 	while (i < cmd_len)
 	{
 		waitpid(pid[i], &status, 0);
@@ -80,27 +60,22 @@ int	pipex(t_pipex *data)
 	data->pid = ft_calloc(data->argc - 3, sizeof(pid_t));
 	if (!data->pid)
 		return (perror("malloc"), ENOMEM);
-	data->prev_pipes = -1;
 	while (i < data->argc - 3)
 	{
 		if (create_pipes(data))
-			return (EXIT_FAILURE);
+			return (ft_free_ptr((void *)&data->pid), EXIT_FAILURE);
 		data->pid[i] = fork();
 		if (data->pid[i] == -1)
-			return (perror("fork"), EXIT_FAILURE);
+			return (perror("fork"), ft_free_ptr((void *)&data->pid), 1);
 		if (data->pid[i] == 0)
 			run_pipeline(i, data);
 		else
-		{
-			data->prev_pipes = dup(data->pipes[0]);
-			close(data->pipes[0]);
-			close(data->pipes[1]);
-			if (data->prev_pipes != -1)
-				close(data->prev_pipes);
-		}
+			bye_bye_pipe_father(data);
 		i++;
 	}
 	wait_childs(data->argc - 3, &status, data->pid);
 	ft_free_ptr((void *)&data->pid);
-	return(status);
+	if (data->prev_pipes != -1)
+		close(data->prev_pipes);
+	return (status);
 }

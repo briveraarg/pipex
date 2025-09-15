@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 12:28:08 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/15 12:45:46 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:22:14 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	setup_pipe_stdin_infile(t_pipex *data)
 	{
 		close(data->pipes[0]);
 		close(data->pipes[1]);
+		ft_free_ptr((void *)&data->pid);
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(data->infile, STDIN_FILENO) == -1)
@@ -48,6 +49,7 @@ static void	setup_pipe_stout_outfile(t_pipex *data)
 	{
 		close(data->pipes[0]);
 		close(data->pipes[1]);
+		ft_free_ptr((void *)&data->pid);
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(data->outfile, STDOUT_FILENO) == -1)
@@ -75,5 +77,4 @@ void	setup_pipe(int i, t_pipex *data)
 			exit(EXIT_FAILURE);
 		close(data->pipes[1]);
 	}
-
 }

@@ -6,7 +6,7 @@
 /*   By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 16:39:15 by brivera           #+#    #+#             */
-/*   Updated: 2025/09/12 19:08:07 by brivera          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:09:36 by brivera          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	**path_check(char **env)
 			path_dir = ft_split(dir_path, ':');
 			if (!dir_path)
 				return (perror("malloc"), ft_free_ptr((void *)&dir_path), NULL);
-			return (path_dir);
+			return (ft_free_ptr((void *)&dir_path), path_dir);
 		}
 		i++;
 	}
@@ -45,7 +45,7 @@ static char	*path_slash_access(const char *command)
 		if (!dir_path_slash)
 		{
 			perror("malloc");
-			return(NULL);
+			return (NULL);
 		}
 	}
 	return (dir_path_slash);
@@ -63,10 +63,11 @@ char	*find_command_in_path(const char *command, char **env)
 	i = 0;
 	while (dir_command[i] != NULL)
 	{
-		dir_full_path = ft_strjoin_free(ft_strdup(dir_command[i]), ft_strdup("/"));
+		dir_full_path = ft_strjoin_free
+			(ft_strdup(dir_command[i]), ft_strdup("/"));
 		dir_full_path = ft_strjoin_free(dir_full_path, ft_strdup(command));
 		if (!dir_full_path)
-			return(perror("malloc"), NULL);
+			return (perror("malloc"), NULL);
 		if (path_slash_access(dir_full_path))
 			return (free_array(dir_command), dir_full_path);
 		ft_free_ptr((void *)&dir_full_path);

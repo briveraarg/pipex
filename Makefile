@@ -6,7 +6,7 @@
 #    By: brivera <brivera@student.42madrid.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 18:56:52 by brivera@stu       #+#    #+#              #
-#    Updated: 2025/09/15 12:19:15 by brivera          ###   ########.fr        #
+#    Updated: 2025/09/15 15:29:09 by brivera          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS		 		:= 	$(SRCS_DIR)main.c \
 						$(SRCS_DIR)setup_pipes.c \
 						$(SRCS_DIR)the_pipex.c\
 						$(SRCS_DIR)find_command_in_path.c\
+						$(SRCS_DIR)execute_command.c\
 						$(SRCS_DIR)free_memory.c
 
 #SRC_DIR_BONUS 	:= src_bonus/
@@ -88,7 +89,7 @@ valgrind:
 		--track-origins=yes \
 		--trace-children=yes \
 		--track-fds=yes \
-		time ./$(NAME) Makefile "sleep 5" "sleep 2" outfile
+		time ./$(NAME) Makefile "echo argentina" "cat" outfile
 
 norminette:
 	@norminette $(SRCS) $(INCLUDE)
